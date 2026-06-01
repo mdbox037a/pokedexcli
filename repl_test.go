@@ -19,6 +19,10 @@ func TestCleanInput(t *testing.T) {
 			input:    "under_score and end     ",
 			expected: []string{"under_score", "and", "end"},
 		},
+		{
+			input:    "CAPS CHECK",
+			expected: []string{"caps", "check"},
+		},
 	}
 
 	for _, c := range cases {
