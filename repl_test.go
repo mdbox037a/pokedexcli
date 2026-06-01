@@ -17,7 +17,7 @@ func TestCleanInput(t *testing.T) {
 		},
 		{
 			input:    "under_score and end     ",
-			expected: []string{"under_score", "and"},
+			expected: []string{"under_score", "and", "end"},
 		},
 	}
 
@@ -26,6 +26,7 @@ func TestCleanInput(t *testing.T) {
 		if len(actual) != len(c.expected) {
 			t.Errorf(
 				"test failed: actual slice length [%d] and expected slice length [%d] do not match", len(actual), len(c.expected))
+			continue
 		}
 		for i := range actual {
 			word := actual[i]
