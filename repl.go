@@ -12,12 +12,11 @@ func startRepl() {
 	for {
 		fmt.Print("Pokedex > ")
 		reader.Scan()
-		input := reader.Text()
-		clean := make([]string, 0)
-		if input != "" {
-			clean = cleanInput(input)
-			fmt.Printf("Your command was %s\n", clean[0])
+		input := cleanInput(reader.Text())
+		if len(input) == 0 {
+			continue
 		}
+		command := input[0]
 	}
 }
 
