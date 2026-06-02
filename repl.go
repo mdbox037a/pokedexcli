@@ -19,6 +19,11 @@ var commands = map[string]cliCommand{
 		description: "Exit the Pokedex",
 		callback:    commandExit,
 	},
+	"help": {
+		name:        "help",
+		description: "Displays a help message",
+		callback:    commandHelp,
+	},
 }
 
 func startRepl() {
