@@ -7,6 +7,20 @@ import (
 	"strings"
 )
 
+type cliCommand struct {
+	name        string
+	description string
+	callback    func() error
+}
+
+var commands = map[string]cliCommand{
+	"exit": {
+		name:        "exit",
+		description: "Exit the Pokedex",
+		callback:    commandExit,
+	},
+}
+
 func startRepl() {
 	reader := bufio.NewScanner(os.Stdin)
 	for {
@@ -16,7 +30,14 @@ func startRepl() {
 		if len(input) == 0 {
 			continue
 		}
-		command := input[0]
+		if command, ok := commands[input[0]]; ok {
+			err := command.callback()
+			if err != nil {
+				fmt.Println(err)
+			}
+		} else {
+			fmt.Println("Unknown command")
+		}
 	}
 }
 
