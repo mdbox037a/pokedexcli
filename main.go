@@ -15,7 +15,11 @@ func main() {
 		clean := make([]string, 0)
 		if input != "" {
 			clean = cleanInput(input)
-			fmt.Printf("Your command was: %s\n", clean[0])
 		}
 	}
+}
+
+func commandExit() error {
+	fmt.Println("Closing the Pokedex... Goodbye!")
+	os.Exit(0)
 }
