@@ -6,7 +6,7 @@ import (
 	"github.com/mdbox037a/pokedexcli/internal/api"
 )
 
-type LocationArea struct {
+type locationArea struct {
 	Count    int    `json:"count"`
 	Next     string `json:"next"`
 	Previous string `json:"previous"`
@@ -26,7 +26,7 @@ func commandMap(currentConfig *config) error {
 		return err
 	}
 
-	currentLocations := LocationArea{}
+	currentLocations := locationArea{}
 	err = json.Unmarshal(response, &currentLocations)
 	if err != nil {
 		return err
@@ -51,7 +51,7 @@ func commandMapB(currentConfig *config) error {
 		return err
 	}
 
-	currentLocations := LocationArea{}
+	currentLocations := locationArea{}
 	err = json.Unmarshal(response, &currentLocations)
 	if err != nil {
 		return err
