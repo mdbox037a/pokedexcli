@@ -24,6 +24,11 @@ var commands = map[string]cliCommand{
 		description: "Displays a help message",
 		callback:    commandHelp,
 	},
+	"map": {
+		name:        "help",
+		description: "Lists nearby locations",
+		callback:    commandMap,
+	},
 }
 
 func startRepl() {
