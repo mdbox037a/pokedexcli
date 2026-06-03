@@ -9,7 +9,7 @@ import (
 type locationArea struct {
 	Count    int    `json:"count"`
 	Next     string `json:"next"`
-	Previous any    `json:"previous"`
+	Previous string `json:"previous"`
 	Results  []struct {
 		Name string `json:"name"`
 		URL  string `json:"url"`
@@ -31,7 +31,32 @@ func commandMap(currentConfig *config) error {
 	if err != nil {
 		return err
 	}
-	currentConfig.previous = currentConfig.next
+	currentConfig.previous = currentLocations.Previous
+	currentConfig.next = currentLocations.Next
+
+	for _, location := range currentLocations.Results {
+		fmt.Println(location.Name)
+	}
+	return nil
+}
+
+func commandMapB(currentConfig *config) error {
+	url := currentConfig.previous
+	if url == "" {
+		fmt.Println("you're on the first page")
+		return nil
+	}
+	response, err := api.GetPokeAPI(url)
+	if err != nil {
+		return err
+	}
+
+	currentLocations := locationArea{}
+	err = json.Unmarshal(response, &currentLocations)
+	if err != nil {
+		return err
+	}
+	currentConfig.previous = currentLocations.Previous
 	currentConfig.next = currentLocations.Next
 
 	for _, location := range currentLocations.Results {

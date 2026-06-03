@@ -32,9 +32,14 @@ var commands = map[string]cliCommand{
 		callback:    commandHelp,
 	},
 	"map": {
-		name:        "help",
+		name:        "map",
 		description: "Lists nearby locations",
 		callback:    commandMap,
+	},
+	"mapb": {
+		name:        "mapb",
+		description: "Lists previous locations",
+		callback:    commandMapB,
 	},
 }
 
