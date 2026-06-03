@@ -11,7 +11,7 @@ Usage:
 help: Displays a help message
 exit: Exit the Pokedex`
 
-func commandHelp() error {
+func commandHelp(currentConfig *config) error {
 	fmt.Println(helpText)
 	return nil
 }

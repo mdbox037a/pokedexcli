@@ -13,6 +13,13 @@ type cliCommand struct {
 	callback    func() error
 }
 
+type config struct {
+	next     string
+	previous string
+}
+
+var currentConfig config
+
 var commands = map[string]cliCommand{
 	"exit": {
 		name:        "exit",
@@ -41,7 +48,7 @@ func startRepl() {
 			continue
 		}
 		if command, ok := commands[input[0]]; ok {
-			err := command.callback()
+			err := command.callback(&currentConfig)
 			if err != nil {
 				fmt.Println(err)
 			}
