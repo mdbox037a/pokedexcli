@@ -19,7 +19,7 @@ type locationArea struct {
 func commandMap(currentState *state) error {
 	url := currentState.next
 	if url == "" {
-		url = "https://pokeapi.co/api/v2/location-area/"
+		url = api.BaseURL + api.MapEndpoint
 	}
 	response, err := api.GetPokeAPI(url)
 	if err != nil {
