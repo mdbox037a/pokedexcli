@@ -16,8 +16,8 @@ type locationArea struct {
 	} `json:"results"`
 }
 
-func commandMap(currentConfig *config) error {
-	url := currentConfig.next
+func commandMap(currentState *state) error {
+	url := currentState.next
 	if url == "" {
 		url = "https://pokeapi.co/api/v2/location-area/"
 	}
@@ -31,8 +31,8 @@ func commandMap(currentConfig *config) error {
 	if err != nil {
 		return err
 	}
-	currentConfig.previous = currentLocations.Previous
-	currentConfig.next = currentLocations.Next
+	currentState.previous = currentLocations.Previous
+	currentState.next = currentLocations.Next
 
 	for _, location := range currentLocations.Results {
 		fmt.Println(location.Name)
@@ -40,8 +40,8 @@ func commandMap(currentConfig *config) error {
 	return nil
 }
 
-func commandMapB(currentConfig *config) error {
-	url := currentConfig.previous
+func commandMapB(currentState *state) error {
+	url := currentState.previous
 	if url == "" {
 		fmt.Println("you're on the first page")
 		return nil
@@ -56,8 +56,8 @@ func commandMapB(currentConfig *config) error {
 	if err != nil {
 		return err
 	}
-	currentConfig.previous = currentLocations.Previous
-	currentConfig.next = currentLocations.Next
+	currentState.previous = currentLocations.Previous
+	currentState.next = currentLocations.Next
 
 	for _, location := range currentLocations.Results {
 		fmt.Println(location.Name)
