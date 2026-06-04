@@ -10,15 +10,8 @@ import (
 type cliCommand struct {
 	name        string
 	description string
-	callback    func(*config) error
+	callback    func(*state) error
 }
-
-type config struct {
-	next     string
-	previous string
-}
-
-var currentConfig config
 
 var commands = map[string]cliCommand{
 	"exit": {
@@ -43,7 +36,7 @@ var commands = map[string]cliCommand{
 	},
 }
 
-func startRepl() {
+func startRepl(currentState *state) {
 	reader := bufio.NewScanner(os.Stdin)
 	for {
 		fmt.Print("Pokedex > ")
@@ -53,7 +46,7 @@ func startRepl() {
 			continue
 		}
 		if command, ok := commands[input[0]]; ok {
-			err := command.callback(&currentConfig)
+			err := command.callback(currentState)
 			if err != nil {
 				fmt.Println(err)
 			}
