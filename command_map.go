@@ -7,9 +7,9 @@ import (
 )
 
 type locationArea struct {
-	Count    int    `json:"count"`
-	Next     string `json:"next"`
-	Previous string `json:"previous"`
+	Count    int     `json:"count"`
+	Next     *string `json:"next"`
+	Previous *string `json:"previous"`
 	Results  []struct {
 		Name string `json:"name"`
 		URL  string `json:"url"`
@@ -17,7 +17,7 @@ type locationArea struct {
 }
 
 func commandMap(currentState *state) error {
-	url := currentState.next
+	url := *currentState.next
 	if url == "" {
 		url = api.BaseURL + api.MapEndpoint
 	}
@@ -41,7 +41,7 @@ func commandMap(currentState *state) error {
 }
 
 func commandMapB(currentState *state) error {
-	url := currentState.previous
+	url := *currentState.previous
 	if url == "" {
 		fmt.Println("you're on the first page")
 		return nil

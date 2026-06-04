@@ -11,6 +11,6 @@ const (
 
 type state struct {
 	dexClient api.Client
-	next      string
-	previous  string
+	next      *string
+	previous  *string
 }
