@@ -21,7 +21,7 @@ func commandMap(currentState *state) error {
 	if url == "" {
 		url = api.BaseURL + api.MapEndpoint
 	}
-	response, err := api.GetPokeAPI(url)
+	response, err := api.GetPokeAPI(url, &currentState.dexClient)
 	if err != nil {
 		return err
 	}
@@ -46,7 +46,7 @@ func commandMapB(currentState *state) error {
 		fmt.Println("you're on the first page")
 		return nil
 	}
-	response, err := api.GetPokeAPI(url)
+	response, err := api.GetPokeAPI(url, &currentState.dexClient)
 	if err != nil {
 		return err
 	}
