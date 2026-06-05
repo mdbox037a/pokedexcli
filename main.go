@@ -5,7 +5,7 @@ import (
 )
 
 func main() {
-	dexClient := api.NewClient(clientTimeout)
+	dexClient := api.NewClient(requestTimeout, cacheInterval)
 	currentState := &state{
 		dexClient: dexClient,
 	}

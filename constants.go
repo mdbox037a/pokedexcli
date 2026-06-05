@@ -6,7 +6,8 @@ import (
 )
 
 const (
-	clientTimeout = (5 * time.Second)
+	requestTimeout = (5 * time.Second)
+	cacheInterval  = (5 * time.Second)
 )
 
 type state struct {

@@ -12,6 +12,6 @@ type cacheEntry struct {
 
 type Cache struct {
 	cachedData map[string]cacheEntry
-	mu         sync.RWMutex
+	mu         *sync.RWMutex
 	interval   time.Duration
 }
