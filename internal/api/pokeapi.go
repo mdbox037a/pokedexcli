@@ -23,13 +23,13 @@ func GetPokeAPI(url string, dexClient *Client) ([]byte, error) {
 	}
 	defer res.Body.Close()
 
-	body, err := io.ReadAll(res.Body)
 	if res.StatusCode > 299 {
 		return nil, fmt.Errorf("Request error: %s", res.Status)
 	}
 	if err != nil {
 		return nil, err
 	}
+	body, err := io.ReadAll(res.Body)
 
 	dexClient.pokeCache.Add(url, body)
 	fmt.Println("DEBUG: cache miss")
