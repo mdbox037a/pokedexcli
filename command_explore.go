@@ -8,7 +8,12 @@ import (
 	"github.com/mdbox037a/pokedexcli/internal/api"
 )
 
-func commandExplore(currentState *state, location string) error {
+func commandExplore(currentState *state, args ...string) error {
+	if len(args) == 0 {
+		return errors.New("Error: please provide a location name")
+	}
+	location := args[0]
+
 	url := api.BaseURL + api.MapEndpoint + "/" + location
 	response, err := api.GetPokeAPI(url, &currentState.dexClient)
 	if err != nil {

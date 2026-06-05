@@ -13,7 +13,7 @@ map: Show a list of locations in the current area
 mapb: Show a list of locations in the previous area
 exit: Exit the Pokedex`
 
-func commandHelp(currentState *state, noop_param string) error {
+func commandHelp(currentState *state, args ...string) error {
 	fmt.Println(helpText)
 	return nil
 }
