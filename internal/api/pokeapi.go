@@ -8,6 +8,7 @@ import (
 
 func GetPokeAPI(url string, dexClient *Client) ([]byte, error) {
 	if data, exists := dexClient.pokeCache.Get(url); exists {
+		fmt.Println("DEBUG: cache hit")
 		return data, nil
 	}
 
@@ -31,5 +32,6 @@ func GetPokeAPI(url string, dexClient *Client) ([]byte, error) {
 	}
 
 	dexClient.pokeCache.Add(url, body)
+	fmt.Println("DEBUG: cache miss")
 	return body, nil
 }
