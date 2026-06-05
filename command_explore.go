@@ -29,7 +29,7 @@ func commandExplore(currentState *state, location string) error {
 	fmt.Printf("Exploring %s...\n", location)
 	fmt.Println("Found Pokemon:")
 	for _, mon := range pokeList {
-		fmt.Printf(" - %s", mon)
+		fmt.Printf(" - %s\n", mon)
 	}
 
 	return nil
