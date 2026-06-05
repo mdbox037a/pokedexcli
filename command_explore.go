@@ -2,7 +2,9 @@ package main
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
+
 	"github.com/mdbox037a/pokedexcli/internal/api"
 )
 
@@ -13,17 +15,30 @@ func commandExplore(currentState *state, location string) error {
 		return err
 	}
 
-	//TODO: bookmark june 4 2026
-	currentLocations := locationArea{}
-	err = json.Unmarshal(response, &currentLocations)
+	currentLocation := locationDetail{}
+	err = json.Unmarshal(response, &currentLocation)
 	if err != nil {
 		return err
 	}
-	currentState.previous = currentLocations.Previous
-	currentState.next = currentLocations.Next
 
-	for _, location := range currentLocations.Results {
-		fmt.Println(location.Name)
+	pokeList := getPokemonAtLocation(&currentLocation)
+	if len(pokeList) == 0 {
+		return errors.New("Error parsing data from location")
 	}
+
+	fmt.Printf("Exploring %s...\n", location)
+	fmt.Println("Found Pokemon:")
+	for _, mon := range pokeList {
+		fmt.Printf(" - %s", mon)
+	}
+
 	return nil
+}
+
+func getPokemonAtLocation(currentLocation *locationDetail) []string {
+	pokeList := make([]string, 0)
+	for _, info := range currentLocation.PokemonEncounters {
+		pokeList = append(pokeList, info.Pokemon.Name)
+	}
+	return pokeList
 }
