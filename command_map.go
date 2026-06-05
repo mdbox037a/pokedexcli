@@ -6,7 +6,7 @@ import (
 	"github.com/mdbox037a/pokedexcli/internal/api"
 )
 
-func commandMap(currentState *state) error {
+func commandMap(currentState *state, noop_param string) error {
 	var url string
 	if currentState.next == nil {
 		url = api.BaseURL + api.MapEndpoint
@@ -32,7 +32,7 @@ func commandMap(currentState *state) error {
 	return nil
 }
 
-func commandMapB(currentState *state) error {
+func commandMapB(currentState *state, noop_param string) error {
 	var url string
 	if currentState.previous == nil {
 		fmt.Println("you're on the first page")
