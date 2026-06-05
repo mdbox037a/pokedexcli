@@ -10,7 +10,7 @@ import (
 type cliCommand struct {
 	name        string
 	description string
-	callback    func(*state, string) error
+	callback    func(*state, ...string) error
 }
 
 var commands = map[string]cliCommand{
@@ -50,12 +50,14 @@ func startRepl(currentState *state) {
 		if len(input) == 0 {
 			continue
 		}
+
+		args := []string{}
+		if len(input) > 1 {
+			args = input[1:]
+		}
+
 		if command, ok := commands[input[0]]; ok {
-			param1 := ""
-			if len(input) == 2 {
-				param1 = input[1]
-			}
-			err := command.callback(currentState, param1)
+			err := command.callback(currentState, args...)
 			if err != nil {
 				fmt.Println(err)
 			}
