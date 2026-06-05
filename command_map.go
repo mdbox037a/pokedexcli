@@ -6,16 +6,6 @@ import (
 	"github.com/mdbox037a/pokedexcli/internal/api"
 )
 
-type locationArea struct {
-	Count    int     `json:"count"`
-	Next     *string `json:"next"`
-	Previous *string `json:"previous"`
-	Results  []struct {
-		Name string `json:"name"`
-		URL  string `json:"url"`
-	} `json:"results"`
-}
-
 func commandMap(currentState *state) error {
 	var url string
 	if currentState.next == nil {
