@@ -7,6 +7,10 @@ import (
 )
 
 func GetPokeAPI(url string, dexClient *Client) ([]byte, error) {
+	if data, exists := dexClient.pokeCache.Get(url); exists {
+		return data, nil
+	}
+
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
 		return nil, err
@@ -26,5 +30,6 @@ func GetPokeAPI(url string, dexClient *Client) ([]byte, error) {
 		return nil, err
 	}
 
+	dexClient.pokeCache.Add(url, body)
 	return body, nil
 }
