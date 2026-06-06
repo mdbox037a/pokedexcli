@@ -49,6 +49,11 @@ var commands = map[string]cliCommand{
 		description: "Lists previous locations",
 		callback:    commandMapB,
 	},
+	"pokedex": {
+		name:        "pokedex",
+		description: "List pokemon currently in pokedex",
+		callback:    commandPokedex,
+	},
 }
 
 func startRepl(currentState *state) {

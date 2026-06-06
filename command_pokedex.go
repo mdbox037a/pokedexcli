@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-func commandPokedex(currentState state, args ...string) error {
+func commandPokedex(currentState *state, args ...string) error {
 	if len(currentState.pokedex) == 0 {
 		fmt.Println("No pokemon caught yet")
 		return nil
