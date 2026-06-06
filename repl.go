@@ -14,6 +14,11 @@ type cliCommand struct {
 }
 
 var commands = map[string]cliCommand{
+	"catch": {
+		name:        "catch",
+		description: "Attempt to catch a pokemon",
+		callback:    commandCatch,
+	},
 	"exit": {
 		name:        "exit",
 		description: "Exit the Pokedex",

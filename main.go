@@ -8,6 +8,7 @@ func main() {
 	dexClient := api.NewClient(requestTimeout, cacheInterval)
 	currentState := &state{
 		dexClient: dexClient,
+		pokedex:   make(map[string]pokemon),
 	}
 	startRepl(currentState)
 }
