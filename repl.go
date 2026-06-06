@@ -34,6 +34,11 @@ var commands = map[string]cliCommand{
 		description: "Displays a help message",
 		callback:    commandHelp,
 	},
+	"inspect": {
+		name:        "inspect",
+		description: "Displays info about a caught pokemon",
+		callback:    commandInspect,
+	},
 	"map": {
 		name:        "map",
 		description: "Lists nearby locations",
