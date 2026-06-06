@@ -14,7 +14,7 @@ func commandExplore(currentState *state, args ...string) error {
 	}
 	location := args[0]
 
-	url := api.BaseURL + api.MapEndpoint + "/" + location
+	url := api.BaseURL + api.MapEndpoint + location
 	response, err := api.GetPokeAPI(url, &currentState.dexClient)
 	if err != nil {
 		return err
