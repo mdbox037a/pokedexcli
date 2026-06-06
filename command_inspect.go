@@ -18,8 +18,8 @@ func commandInspect(currentState *state, args ...string) error {
 
 	p := currentState.pokedex[target]
 	fmt.Printf("Name: %s\n", p.Name)
-	fmt.Printf("Height: %s\n", p.Height)
-	fmt.Printf("Weight: %s\n", p.Weight)
+	fmt.Printf("Height: %d\n", p.Height)
+	fmt.Printf("Weight: %d\n", p.Weight)
 
 	fmt.Println("Stats:")
 	for _, s := range p.Stats {
@@ -28,7 +28,7 @@ func commandInspect(currentState *state, args ...string) error {
 
 	fmt.Println("Types:")
 	for _, t := range p.Types {
-		fmt.Printf("  -%s: %d\n", t.Type.Name)
+		fmt.Printf("  - %s\n", t.Type.Name)
 	}
 	return nil
 }
