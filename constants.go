@@ -8,12 +8,14 @@ import (
 const (
 	requestTimeout = (5 * time.Second)
 	cacheInterval  = (5 * time.Second)
+	catchThreshold = 40
 )
 
 type state struct {
 	dexClient api.Client
 	next      *string
 	previous  *string
+	pokedex   map[string]pokemon
 }
 
 type locationArea struct {
